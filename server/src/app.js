@@ -4,6 +4,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import authRoutes from "./routes/authRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
+import eventRoutes from "./routes/eventRoutes.js";
+import registrationRoutes from "./routes/registrationRoutes.js";
 
 
 const app = express();
@@ -18,9 +20,11 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-
-export default app;
+app.use("/api/events", eventRoutes);
+app.use("/api", registrationRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
+export default app;
+
 
